@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "27f5fd84-55e6-43cf-9e18-bef754856533",
+		"name": "Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31055999"
+	},
+	"item": [
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "note_name",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "note",
+							"value": "bublaska",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://localhost:8000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "notes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/notes"
+			},
+			"response": []
+		},
+		{
+			"name": "notes/:name",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "jdfhskjfhkjdshfkjsh"
+				},
+				"url": "http://localhost:8000/notes/5"
+			},
+			"response": []
+		},
+		{
+			"name": "notes/:name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/notes/5"
+			},
+			"response": []
+		},
+		{
+			"name": "UploadForm.html",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/UploadForm.html"
+			},
+			"response": []
+		},
+		{
+			"name": "notes/:noteName",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8000/notes/5"
+			},
+			"response": []
+		}
+	]
+}
