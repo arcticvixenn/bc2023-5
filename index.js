@@ -111,9 +111,9 @@ app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), as
     // Перевірка наявності нотатки з таким ім'ям
     const existingNote = notesJson.find((note) => note.name === noteName);
 
-    // Якщо нотатка з ім'ям вже існує, повертаємо помилку 400
+    // Якщо нотатка з ім'ям вже існує, повертаємо помилку 404
     if (existingNote) {
-      return res.status(400).json({ error: 'Така нотатка вже існує' });
+      return res.status(404).json({ error: 'Така нотатка вже існує' });
     }
 
     // Додавання нової нотатки до масиву
@@ -123,7 +123,7 @@ app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), as
     await fs.writeFile(notesJsonPath, JSON.stringify(notesJson, null, 2));
 
     // Відправлення відповіді про успішне завантаження нотатки з кодом 201
-    res.status(400).send('Нотатка успішно додана!');
+    res.status(201).send('Нотатка успішно додана!');
   } catch (error) {
     // Обробка помилок: вивід інформації про помилку у консоль сервера
     console.error(error);
@@ -155,7 +155,7 @@ app.get('/notes/:noteName', async (req, res) => {
       // Перевірка наявності нотатки
       if (!selectedNote) {
           // Якщо нотатка не знайдена, відправляємо відповідь з HTTP-кодом 404 та повідомленням про помилку
-          return res.status(400).json({ error: 'Нотатку не знайдено' });
+          return res.status(404).json({ error: 'Нотатку не знайдено' });
       }
 
       // Відправлення відповіді з текстом нотатки користувачеві
@@ -199,7 +199,7 @@ app.put('/notes/:noteName', express.text(), async (req, res) => {
           res.status(200).send('Нотатка успішно оновлена!');
       } else {
           // Відправлення відповіді про те, що нотатка не знайдена із кодом 404
-          res.status(400).send('Нотатку не знайдено');
+          res.status(404).send('Нотатку не знайдено');
       }
   } catch (error) {
       // Обробка помилок: вивід інформації про помилку у консоль сервера
@@ -227,7 +227,7 @@ app.delete('/notes/:noteName', async (req, res) => {
     // Перевірка чи нотатка існує
     if (selectedNoteIndex === -1) {
       // Якщо нотатка не знайдена, відправити відповідь зі статусом 404 та повідомленням про помилку
-      return res.status(400).json({ error: 'Нотатку не знайдено' });
+      return res.status(404).json({ error: 'Нотатку не знайдено' });
     }
 
     // Видалення нотатки з масиву
