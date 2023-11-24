@@ -113,7 +113,7 @@ app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), as
 
     // Якщо нотатка з ім'ям вже існує, повертаємо помилку 404
     if (existingNote) {
-      return res.status(404).json({ error: 'Така нотатка вже існує' });
+      return res.status(400).json({ error: 'Така нотатка вже існує' });
     }
 
     // Додавання нової нотатки до масиву
